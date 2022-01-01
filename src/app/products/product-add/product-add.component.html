@@ -1,0 +1,39 @@
+
+<div class="product-add mt-lg-5 m-lg-auto">
+  <h3 class="mb-3">Créer un nouveau produits!</h3>
+  <form  [formGroup]="addForm" (ngSubmit)="onSubmit()">
+    <!-- Input pour le name -->
+    <div class="form-group mb-2">
+      <label for="name"><em class="text-danger">*</em> Nom:</label>
+      <input type="text" formControlName="name" class="form-control" id="name" aria-describedby="namelHelp" placeholder="Enter le nom du produit."/>
+      <small id="namelHelp" class="form-text text-muted">Veuillez choisir un nom pertinant pour le réferencement.</small>
+      <small *ngFor="let error of error_messages.name">
+        <div class="form-text text-danger mb-3 " *ngIf="addForm.controls['name'].hasError(error.type) && (addForm.controls['name'].dirty || addForm.controls['name'].touched)">
+          {{ error.message }}
+        </div>
+      </small>
+    </div>
+      <!-- Input pour le prix -->
+      <div class="form-group mb-3">
+        <label for="prix"><em class="text-danger">*</em> Prix:</label>
+        <input type="number" formControlName="prix" class="form-control" id="prix" placeholder="Enter le prix du produit."/>
+        <small *ngFor="let error of error_messages.prix">
+          <div class="form-text text-danger mb-3 " *ngIf="addForm.controls['prix'].hasError(error.type) && (addForm.controls['prix'].dirty || addForm.controls['prix'].touched)">
+            {{ error.message }}
+          </div>
+        </small>
+      </div>
+    <!-- Input pour le dsecription -->
+    <div class="form-group mb-2">
+      <label for="description"><em class="text-danger">*</em> Decrire le produit:</label>
+      <textarea class="form-control" formControlName="description" id="description" rows="3"></textarea>
+      <small *ngFor="let error of error_messages.name">
+        <div class="form-text text-danger mb-3 " *ngIf="addForm.controls['description'].hasError(error.type) && (addForm.controls['description'].dirty || addForm.controls['description'].touched)">
+          {{ error.message }}
+        </div>
+      </small>
+    </div>
+    <button type="submit" class="btn btn-primary mt-3" >Ajouter ce produit</button>
+  </form>
+
+</div>

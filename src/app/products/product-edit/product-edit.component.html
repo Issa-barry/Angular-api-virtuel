@@ -1,0 +1,26 @@
+<!--*********************************************************************************
+    *                             FORMULAIRE
+    *********************************************************************************-->
+<div class="form-edit m-lg-auto mt-lg-5">
+  <form  [formGroup]="addForm" (ngSubmit)="onSubmit()">
+    <!-- Input pour le name -->
+    <div class="form-group mb-2">
+      <label for="name">Nom:</label>
+      <input type="text" formControlName="name"   [(ngModel)]="product.name"  class="form-control" id="name" />
+      <small *ngFor="let error of error_messages.name"><div class="form-text text-danger mb-3 " *ngIf="addForm.controls['name'].hasError(error.type) && (addForm.controls['name'].dirty || addForm.controls['name'].touched)">{{ error.message }}</div></small>
+    </div>
+      <!-- Input pour le prix -->
+      <div class="form-group mb-3">
+        <label for="prix">Prix:</label>
+        <input type="number" formControlName="prix" [(ngModel)]="product.prix" class="form-control" id="prix"/>
+        <small *ngFor="let error of error_messages.prix"> <div class="form-text text-danger mb-3 " *ngIf="addForm.controls['prix'].hasError(error.type) && (addForm.controls['prix'].dirty || addForm.controls['prix'].touched)">{{ error.message }}</div> </small>
+      </div>
+    <!-- Input pour le dsecription -->
+    <div class="form-group mb-2">
+      <label for="description">Decrire le produit:</label>
+      <textarea  formControlName="description" [(ngModel)]="product.description" class="form-control" id="description" rows="3"></textarea>
+      <small *ngFor="let error of error_messages.name">  <div class="form-text text-danger mb-3 " *ngIf="addForm.controls['description'].hasError(error.type) && (addForm.controls['description'].dirty || addForm.controls['description'].touched)"> {{ error.message }}</div> </small>
+    </div>
+    <small><button routerLink="/" class="btn btn-light mt-3" >Annuler</button><button type="submit" class="btn btn-primary mt-3 mx-lg-5" >Appliquer</button></small>
+  </form>
+</div>
